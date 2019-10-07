@@ -1,0 +1,5 @@
+﻿  Exceptions.cpp
+c:\users\st52558\documents\github\cpp\cv02exception\exceptions\exceptions\exceptions.cpp(3): fatal error C1083: Cannot open precompiled header file: 'Debug\Exceptions.pch': No such file or directory
+  pch.cpp
+c:\users\st52558\documents\github\cpp\cv02exception\exceptions\exceptions\pch.cpp(3): fatal error C1083: Cannot open precompiled header file: 'Debug\Exceptions.pch': No such file or directory
+  Generating Code...
