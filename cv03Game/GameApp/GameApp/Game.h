@@ -10,6 +10,7 @@ private:
 	int count;
 public:
 	Game();
+	~Game();
 	void insertObject(Object* o);
 	int* findStaticObjectsIds(double xmin, double xmax, double ymin, double ymax) const;
 	MovableObject** findMovableObjectsInArea(double x, double y, double r) const;

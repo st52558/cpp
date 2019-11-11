@@ -7,6 +7,16 @@ Game::Game() {
 	objects = new Object*[100];
 }
 
+Game::~Game() {
+	for (size_t i = 0; i < count; i++)
+	{
+		delete objects[i];
+	}
+
+	delete[] objects;
+}
+
+
 void Game::insertObject(Object* o) {
 	Object** temp = new Object*[count];
 	for (int i = 0; i < count; i++)
