@@ -1,26 +1,30 @@
 #include "Person.h"
 #include <string>
-using namespace std;
-Entity::Person::Person(string name, string telefon, int id) {
+Entity::Person::Person(std::string name, std::string telefon, int id) {
 	this->id = id;
 	this->name = name;
 	this->phone = telefon;
 }
-string Entity::Person::getName() {
+Entity::Person::Person() {
+}
+Entity::Person::~Person() {
+
+}
+std::string Entity::Person::getName() const{
 	return name;
 }
-string Entity::Person::getPhone() {
+std::string Entity::Person::getPhone() const{
 	return phone;
 }
-int Entity::Person::getID() {
+int Entity::Person::getID() const{
 	return id;
 }
 void Entity::Person::setID(int id) {
 	this->id = id;
 }
-void Entity::Person::setPhone(string telefon) {
+void Entity::Person::setPhone(std::string telefon) {
 	this->phone = phone;
 }
-void Entity::Person::setName(string name) {
+void Entity::Person::setName(std::string name) {
 	this->name = name;
 }

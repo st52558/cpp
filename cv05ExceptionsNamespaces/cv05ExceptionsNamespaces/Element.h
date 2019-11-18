@@ -4,14 +4,11 @@
 #include "Person.h"
 struct Element
 {
-private:
-	Entity::Person current;
-	Element* next;
 public:
-	//PrvekSeznam::~PrvekSeznam;
-	Entity::Person getPerson();
-	void setOsoba(Entity::Person person);
-	Element(Entity::Person current, Element* next);
+	Entity::Person* current;
+	Element* next;
+	~Element();
+	Element() : current(nullptr), next(nullptr) {}
 };
 
 #endif // !ELEMENT_H

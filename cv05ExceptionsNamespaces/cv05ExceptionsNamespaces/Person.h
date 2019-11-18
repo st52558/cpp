@@ -4,21 +4,22 @@
 
 #include <string>
 namespace Entity {
-	using namespace std;
 	struct Person
 	{
 	private:
-		string name;
-		string phone;
+		std::string name;
+		std::string phone;
 		int id;
 	public:
-		Entity::Person(string name, string phone, int id);
-		string getName();
-		string getPhone();
-		int getID();
+		Person(std::string name, std::string phone, int id);
+		Person();
+		~Person();
+		std::string getName() const;
+		std::string getPhone() const;
+		int getID() const;
 		void setID(int id);
-		void setPhone(string phone);
-		void setName(string name);
+		void setPhone(std::string phone);
+		void setName(std::string name);
 	};
 }
 
