@@ -57,9 +57,10 @@ public:
 // Tabulka
 class Table {
 public:
-	FieldObject** fields;
+	Object*** table;
 	std::string name;
 	int fieldCount;
+	int rowCount;
 
 	// Vložení nového øádku do tabulky (pole Object* (pro jednotlivé hodnoty sloupeèkù))
 	void insert(Object** row);
