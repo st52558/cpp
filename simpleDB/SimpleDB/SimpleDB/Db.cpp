@@ -11,18 +11,42 @@ Table* Db::createTable(std::string name, int fieldsCount, FieldObject** fields) 
 	{
 		if (name == tables[i]->name) 
 		{
+			// tady vypsat chybu (tabulka už existuje)
 			return nullptr;
 		}
 	}
 	Table* newTable = new Table();
 	newTable->name = name;
 	newTable->fields = fields;
-
+	newTable->fieldCount = fieldsCount;
+	return newTable;
 }
 // Otevøe existující tabulku
-Table* openTable(std::string name);
+Table* Db::openTable(std::string name) {
+	for (int i = 0; i < count; i++)
+	{
+		if (name == tables[i]->name)
+		{
+			return tables[i];
+		}
+	}
+	// vypsat chybu (špatný název tabulky)
+}
 // Otevøe tabulku (pokud neexistuje, vytvoøí automaticky novou)
-Table* openOrCreateTable(std::string name, int fieldsCount, FieldObject** fields);
+Table* Db::openOrCreateTable(std::string name, int fieldsCount, FieldObject** fields) {
+	for (int i = 0; i < count; i++)
+	{
+		if (name == tables[i]->name)
+		{
+			return openTable(name);
+		}
+	}
+	Table* newTable = new Table();
+	newTable->name = name;
+	newTable->fields = fields;
+	newTable->fieldCount = fieldsCount;
+	return newTable;
+}
 // Alokuje objekt „int“
 static Object* Int(int value);
 // Alokuje objekt „double“

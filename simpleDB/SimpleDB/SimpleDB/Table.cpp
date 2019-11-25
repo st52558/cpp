@@ -28,6 +28,6 @@ int findRowId(Condition* condition) { throw 0; }
 // Update – aktualizuje øádky vyhovující podmínce, aktualizaci provádí funkce „callback“
 // callback na vstupu obdrží data øádku a vrací data
 void update(Condition* condition, std::function<void(Object**)> callback) { throw 0; }
-};
+
 // Polymorfní datový objekt (reprezentuje jednu datovou hodnotu v tabulce)
 // Rozhraní vyhovuje základním typùm int, double, string; pro typ „field“ je rozhraní rozšíøeno

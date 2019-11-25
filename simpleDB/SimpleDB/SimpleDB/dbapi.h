@@ -11,6 +11,7 @@ enum struct FieldType {
 // Databáze
 class Db {
 private:
+	std::string name;
 	Table** tables;
 	int count;
 public:
@@ -53,14 +54,15 @@ public:
 	// Uzavøe iterátor (dealokuje pamìové prostøedky)
 	virtual void close() = 0;
 };
-
 // Tabulka
 class Table {
-public:
+private:
 	FieldObject** fields;
 	std::string name;
 	int fieldCount;
 
+public:
+	
 	// Vloení nového øádku do tabulky (pole Object* (pro jednotlivé hodnoty sloupeèkù))
 	void insert(Object** row);
 	// Smazání vyrabného øádku z tabulky
