@@ -11,7 +11,7 @@ Time::Time(int hours, int minutes, int seconds) {
 
 }
 int Time::compareTo(IComparable* obj)const {
-	Time* time = (Time*)obj;
+	Time* time = dynamic_cast<Time*>(obj);
 	double time1 = this->_hours + this->_minutes / 60 + this->_seconds / 3600;
 	double time2 = time->_hours + time->_minutes / 60 + time->_seconds / 3600;
 

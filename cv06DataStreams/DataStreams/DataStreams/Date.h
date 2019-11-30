@@ -24,28 +24,22 @@ std::ostream& operator<<(std::ostream& os, const Date& date) {
 	return os;
 }
 std::istream& operator>>(std::istream& is, Date& date) {
-	
+	char character;
+
 	int day;
 	is >> day;
-	while (!is)
-	{
-		is >> day;
-	}
 	date.setDay(day);
+
 	int month;
+	is >> character;
 	is >> month;
-	while (month == 0)
-	{
-		is >> month;
-	}
 	date.setMonth(month);
+
 	int year;
+	is >> character;
 	is >> year;
-	while (!is)
-	{
-		is >> year;
-	}
 	date.setYear(year);
+
 	return is;
 }
 #endif // !DATE

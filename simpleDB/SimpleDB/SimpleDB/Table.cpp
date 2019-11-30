@@ -11,7 +11,9 @@ void commit();
 // Uzavøe tabulku (dealokuje pamìové prostøedky)
 void close();
 // Vrací poèet øádkù v tabulce
-int getRowCount() const;
+int Table::getRowCount() const {
+	
+}
 // Vrací pole FieldObject* popisující sloupeèky tabulky
 FieldObject** Table::getFields() const {
 	return fields;
