@@ -1,6 +1,7 @@
 ﻿#include "Time.h"
 #include <iostream>
 
+
 void compareArray(IComparable** times, int numberOfTimes) {
 	for (int i = 0; i < numberOfTimes - 1; i++) {
 
@@ -20,17 +21,17 @@ void compareArray(IComparable** times, int numberOfTimes) {
 void writeAllTimes(IComparable** times, int numberOfTimes) {
 	for (int i = 0; i < numberOfTimes; i++)
 	{
-		cout << times[i]->toString() << endl;
+		//cout << times[i]->toString() << endl;
 	}
 }
 
-int main()
+int main(int agrc, char** argv)
 {
 	IComparable** times = new IComparable * [10];
 
 	for (int i = 0; i < 10; i++)
 	{
-		times[i] = new Time(rand() % 24, rand() % 60, rand() % 60);
+		//times[i] = new Time(rand() % 24, rand() % 60, rand() % 60);
 	}
 	writeAllTimes(times, 10);
 	cout << "--------------" << endl;
