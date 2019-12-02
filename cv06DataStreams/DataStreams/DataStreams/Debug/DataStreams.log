@@ -1,5 +1,3 @@
 ﻿  DataStreams.cpp
 C:\Users\Gunny\Documents\GitHub\cpp\cv06DataStreams\DataStreams\DataStreams\DataStreams.cpp(113): warning C4101: zipCode: neodkazovaná lokální proměnná
-C:\Users\Gunny\Documents\GitHub\cpp\cv06DataStreams\DataStreams\DataStreams\DataStreams.cpp(154): warning C4244: inicializování: std::streamoff se převádí na int; může dojít ke ztrátě dat.
-C:\Users\Gunny\Documents\GitHub\cpp\cv06DataStreams\DataStreams\DataStreams\DataStreams.cpp(163): warning C4101: variableSize: neodkazovaná lokální proměnná
   DataStreams.vcxproj -> C:\Users\Gunny\Documents\GitHub\cpp\cv06DataStreams\DataStreams\Debug\DataStreams.exe

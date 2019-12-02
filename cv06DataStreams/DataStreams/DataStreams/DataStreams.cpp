@@ -10,7 +10,7 @@ void writeToConsole(Person** persons, int count) {
 }
 
 void load() {
-	Person** persons = nullptr;
+	Person** persons;
 	std::string line;
 	int personsCount = 0;
 
@@ -97,7 +97,7 @@ void save() {
 
 
 void saveBinary() {
-	Person** persons = new Person * [3];
+	Person** persons = new Person*[3];
 	int personCount = 3;
 	persons[0] = new Person("Petr", "Cerveny", new Address("Zelena", "Praha", 10000), new Date(21, 5, 1984));
 	persons[1] = new Person("Pavel", "Zluty", new Address("Bila", "Brno", 20000), new Date(2, 4, 1991));
@@ -113,34 +113,34 @@ void saveBinary() {
 	int zipCode;
 	size_t variableSize;
 	
-	stream.write((char*)& personCount, sizeof(personCount));
+	stream.write((char*)&personCount, sizeof(personCount));
 
 	for (int i = 0; i < 3; i++)
 	{
-		Person* person = persons[i];
-		name = person->getName();
+		Person person = *persons[i];
+		name = person.getName();
 		variableSize = name.size();
-		stream.write((char*)& variableSize, sizeof(variableSize));
+		stream.write((char*)&variableSize, sizeof(variableSize));
 		stream.write(name.c_str(), variableSize);
 
-		surname = person->getSurname();
+		surname = person.getSurname();
 		variableSize = surname.size();
-		stream.write((char*)& variableSize, sizeof(variableSize));
+		stream.write((char*)&variableSize, sizeof(variableSize));
 		stream.write(surname.c_str(), surname.size());
 
-		stream.write((char*)& person->getDate(), sizeof(person->getDate()));
+		stream.write((char*)& person.getDate(), sizeof(person.getDate()));
 
-		street = person->getAddress().getStreet();
+		street = person.getAddress().getStreet();
 		variableSize = street.size();
-		stream.write((char*)& variableSize, sizeof(variableSize));
+		stream.write((char*)&variableSize, sizeof(variableSize));
 		stream.write(street.c_str(), street.size());
 
-		city = person->getAddress().getCity();
+		city = person.getAddress().getCity();
 		variableSize = city.size();
-		stream.write((char*)& variableSize, sizeof(variableSize));
+		stream.write((char*)&variableSize, sizeof(variableSize));
 		stream.write(city.c_str(), city.size());
 
-		int zipCode = person->getAddress().getZipCode();
+		int zipCode = person.getAddress().getZipCode();
 		stream.write((char*)& zipCode, sizeof(zipCode));
 	}
 
@@ -150,50 +150,55 @@ void saveBinary() {
 void loadBinary() {
 	std::ifstream stream{ "././output.dat", std::ios_base::in | std::ios_base::binary };
 
-	stream.seekg(0, std::ios_base::end);
-	int size = stream.tellg();
-	stream.seekg(0, std::ios_base::beg);
 
-	Date* date;
+	Date date;
 	std::string name;
 	std::string surname;
 	std::string street;
 	std::string city;
 	int zipCode;
 	size_t variableSize;
+	int personCount;
 
-	Person** persons = new Person*[3];
+	
 
-	for (int i = 0; i < 3; i++)
+	stream.read((char*)&personCount, sizeof(personCount));
+
+	Person** persons = new Person * [personCount];
+
+	for (int i = 0; i < personCount; i++)
 	{
-		stream.read((char*)& size, sizeof(size));
-		name.resize(size);
-		stream.read((char*)& name[0], size);
+		stream.read((char*)&variableSize, sizeof(variableSize));
+		name.resize(variableSize);
+		stream.read((char*)&name[0], variableSize);
 
-		stream.read((char*)& size, sizeof(size));
-		surname.resize(size);
-		stream.read((char*)& surname[0], size);
+		stream.read((char*)&variableSize, sizeof(variableSize));
+		surname.resize(variableSize);
+		stream.read((char*)&surname[0], variableSize);
 
-		stream.read((char*)& date, sizeof(date));
+		stream.read((char*)&date, sizeof(date));
 
-		stream.read((char*)& size, sizeof(size));
-		street.resize(size);
-		stream.read((char*)& street[0], size);
+		stream.read((char*)&variableSize, sizeof(variableSize));
+		street.resize(variableSize);
+		stream.read((char*)&street[0], variableSize);
 
-		stream.read((char*)& size, sizeof(size));
-		city.resize(size);
-		stream.read((char*)& city[0], size);
+		stream.read((char*)&variableSize, sizeof(variableSize));
+		city.resize(variableSize);
+		stream.read((char*)&city[0], variableSize);
 
-		stream.read((char*)& zipCode, sizeof(zipCode));
+		stream.read((char*)&zipCode, sizeof(zipCode));
 
-		persons[i] = new Person(name, surname, new Address(street, city, zipCode), date);
+		persons[i] = new Person(name, surname, new Address(street, city, zipCode), new Date(date));
 	}
+	writeToConsole(persons, personCount);
 }
 
 int main(int agrc, char** argv)
 {
+	std::cout << "Text:" << std::endl;
 	save();
 	load();
+	std::cout << "Binary:" << std::endl;
 	saveBinary();
 	loadBinary();
 }
