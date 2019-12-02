@@ -5,6 +5,12 @@ Time::~Time() {
 }
 
 Time::Time(int hours, int minutes, int seconds) {
+	if (hours > 23 || minutes > 59 || seconds > 59 || hours < 0 || minutes < 0 || seconds < 0) {
+		_hours = 0;
+		_minutes = 0;
+		_seconds = 0;
+		throw "spatny casovy format";
+	}
 	_hours = hours;
 	_minutes = minutes;
 	_seconds = seconds;
