@@ -30,7 +30,7 @@ Piping::Piping(int dim, char** charArray) {
 				elements[i * dimension + j] = nullptr;
 				break;
 			default:
-				elements[i * dimension + j] = nullptr;
+				throw "spatny zapis";
 				break;
 			}
 		}
@@ -42,7 +42,6 @@ const APipeElement* Piping::GiveElement(int x, int y) const {
 		return nullptr;	
 	}
 	else {
-		std::cout << x * dimension + y << std::endl;
 		return elements[x * dimension + y];
 	}
 }
@@ -52,10 +51,19 @@ bool Piping::IsPipingOk() const {
 	{
 		for (int j = 0; j < dimension; j++)
 		{
-			if (GiveElement(i, j)==nullptr || !GiveElement(i, j)->IsCorrectlyInvolved(this)) {
-				return false;
+			if (GiveElement(i, j) != nullptr) {
+				if (!GiveElement(i, j)->IsCorrectlyInvolved(this)) {
+					return false;
+				}
 			}
 		}
 	}
 	return true;
+}
+
+Piping::~Piping() {
+	for (int i = 0; i < dimension*dimension; i++) {
+		delete elements[i];
+	}
+	delete elements;
 }

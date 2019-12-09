@@ -27,11 +27,11 @@ EastWestSouth::EastWestSouth(int x, int y) {
 }
 
 bool EastWest::IsCorrectlyInvolved(const IPiping* potrubi) const {
-	return potrubi->GiveElement(_x - 1, _y) != nullptr && potrubi->GiveElement(_x + 1, _y) != nullptr;
+	return potrubi->GiveElement(_x, _y - 1) != nullptr && potrubi->GiveElement(_x, _y + 1) != nullptr;
 }
 
 bool NorthSouth::IsCorrectlyInvolved(const IPiping* potrubi) const {
-	return potrubi->GiveElement(_x, _y - 1) != nullptr && potrubi->GiveElement(_x, _y + 1) != nullptr;
+	return potrubi->GiveElement(_x - 1, _y) != nullptr && potrubi->GiveElement(_x + 1, _y) != nullptr;
 }
 
 bool AllSides::IsCorrectlyInvolved(const IPiping* potrubi) const {
@@ -43,5 +43,5 @@ bool NoDirection::IsCorrectlyInvolved(const IPiping* potrubi) const {
 }
 
 bool EastWestSouth::IsCorrectlyInvolved(const IPiping* potrubi) const {
-	return potrubi->GiveElement(_x, _y + 1) != nullptr && potrubi->GiveElement(_x + 1, _y) != nullptr && potrubi->GiveElement(_x - 1, _y) != nullptr;
+	return potrubi->GiveElement(_x, _y + 1) != nullptr && potrubi->GiveElement(_x + 1, _y) != nullptr && potrubi->GiveElement(_x , _y - 1) != nullptr;
 }

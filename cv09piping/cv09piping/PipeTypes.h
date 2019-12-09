@@ -48,23 +48,14 @@ struct EastWestSouth : APipeElement
 	int _y;
 };
 
-struct NoElement : APipeElement
-{
-	NoElement(int x, int y);
-	~NoElement() { }
-	bool IsCorrectlyInvolved(const IPiping* potrubi) const;
-	int _x;
-	int _y;
-};
-
 struct Piping : IPiping
 {
 private: 
 	APipeElement** elements;
-public:
 	int dimension;
+public:
 	Piping(int dim, char** charArray);
-	~Piping() { }
+	~Piping();
 	const APipeElement* GiveElement(int x, int y) const;
 	bool IsPipingOk() const;
 };
