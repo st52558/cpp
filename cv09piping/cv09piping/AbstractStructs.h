@@ -1,15 +1,15 @@
-#define ABSTRACTSTRUCTS_H
-#ifdef ABSTRACTSTRUCTS_H
+#define PIPETYPES_H
+#ifdef PIPETYPES_H
 
-struct APotrubniPrvek;
-struct IPotrubi {
-	virtual ~IPotrubi() { }
-	virtual const APotrubniPrvek* DejPrvek(int x, int y) const = 0;
-	virtual bool JePotrubiOk() const = 0;
+struct APipeElement;
+struct IPiping {
+	virtual ~IPiping() { }
+	virtual const APipeElement* GiveElement(int x, int y) const = 0;
+	virtual bool IsPipingOk() const = 0;
 };
-struct APotrubniPrvek {
-	virtual ~APotrubniPrvek() { }
-	virtual bool JeKorektneZapojen(const IPotrubi* potrubi) const = 0;
+struct APipeElement {
+	virtual ~APipeElement() { }
+	virtual bool IsCorrectlyInvolved(const IPiping* potrubi) const = 0;
 	int _x;
 	int _y;
 };

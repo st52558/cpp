@@ -1,6 +1,7 @@
 #include <sstream>
 #include <iostream>
 #include <fstream>
+#include "PipeTypes.h"
 
 int main(int agrc, char** argv)
 {
@@ -18,6 +19,7 @@ int main(int agrc, char** argv)
 	{
 		charArray[i] = new char[dimension];
 	}
+	//char* charArray = new char [dimension*dimension];
 	
 	for (int i = 0; i < dimension; i++)
 	{
@@ -39,5 +41,12 @@ int main(int agrc, char** argv)
 		std::cout << std::endl;
 	}
 
-
+	IPiping* piping = new Piping(dimension, charArray);
+	if (piping->IsPipingOk()) {
+		std::cout << "zapojeno spravne";
+	}
+	else {
+		std::cout << "zapojeno spatne";
+	}
+	
 }
