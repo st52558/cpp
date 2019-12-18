@@ -1,5 +1,19 @@
 #include "dbapi.h"
+#include <iostream>
 
+FieldObject** combineToDefinition(FieldObject* f, FieldObject* g) {
+	FieldObject** definition = new FieldObject*();
+	definition[0] = f;
+	definition[1] = g;
+	return definition;
+}
+
+Object** combineToRow(Object* f, Object* g) {
+	Object** row = new Object*();
+	row[0] = f;
+	row[1] = g;
+	return row;
+}
 
 int main(int agrc, char** argv)
 {
@@ -7,7 +21,7 @@ int main(int agrc, char** argv)
 	Db* db = Db::open("testdb");
 	
 	// Vytvoøení/otevøení tabulky
-	auto idField = Db::Field("id", FieldType::Integer);
+	/*auto idField = Db::Field("id", FieldType::Integer);
 	auto nameField = Db::Field("name", FieldType::String);
 	auto userFields = combineToDefinition(idField, nameField);
 	Table* users = db->openOrCreateTable("users", 2, userFields);
@@ -21,7 +35,7 @@ int main(int agrc, char** argv)
 	while (it->moveNext())
 	{
 		auto row = it->getRow();
-		cout << row[0]->getInt() << ": " << row[1]->getString() << endl;
+		std::cout << row[0]->getInt() << ": " << row[1]->getString() << std::endl;
 	}
 	it->close();
 	// Uložení tabulky na disk
@@ -29,5 +43,5 @@ int main(int agrc, char** argv)
 	// Uzavøení tabulky (a dealokace pamìových prostøedkù)
 	users->close();
 	// Uzavøení db (a dealokace pamìových prostøedkù)
-	db->close();
+	db->close();*/
 }

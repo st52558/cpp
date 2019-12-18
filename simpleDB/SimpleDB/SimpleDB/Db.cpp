@@ -1,13 +1,15 @@
 #include "dbapi.h"
 
 // Otevøe databázi
-static Db* open(std::string database) {}
+static Db* open(std::string database) {
+
+}
 // Uzavøe databázi (dealokuje pamìové prostøedky)
 void close() {}
 // Vytvoøí novou tabulku
 Table* Db::createTable(std::string name, int fieldsCount, FieldObject** fields) {
 	
-	for (int i = 0; i < count; i++)
+	for (int i = 0; i < tablesCount; i++)
 	{
 		if (name == tables[i]->name) 
 		{
@@ -15,15 +17,12 @@ Table* Db::createTable(std::string name, int fieldsCount, FieldObject** fields) 
 			return nullptr;
 		}
 	}
-	Table* newTable = new Table();
-	newTable->name = name;
-	newTable->fields = fields;
-	newTable->fieldCount = fieldsCount;
-	return newTable;
+	return new Table(name,fieldsCount,fields);
+	
 }
 // Otevøe existující tabulku
 Table* Db::openTable(std::string name) {
-	for (int i = 0; i < count; i++)
+	for (int i = 0; i < tablesCount; i++)
 	{
 		if (name == tables[i]->name)
 		{
@@ -34,28 +33,28 @@ Table* Db::openTable(std::string name) {
 }
 // Otevøe tabulku (pokud neexistuje, vytvoøí automaticky novou)
 Table* Db::openOrCreateTable(std::string name, int fieldsCount, FieldObject** fields) {
-	for (int i = 0; i < count; i++)
+	for (int i = 0; i < tablesCount; i++)
 	{
 		if (name == tables[i]->name)
 		{
 			return openTable(name);
 		}
 	}
-	Table* newTable = new Table();
-	newTable->name = name;
-	newTable->fields = fields;
-	newTable->fieldCount = fieldsCount;
-	return newTable;
+	return new Table(name, fieldsCount, fields);
 }
 // Alokuje objekt „int“
-static Object* Int(int value);
+Object* Db::Int(int value) {
+	return new IntObject(value);
+}
 // Alokuje objekt „double“
-static Object* Double(double value);
+Object* Db::Double(double value) {
+	return new DoubleObject(value);
+}
 // Alokuje objekt „string“
-static Object* String(std::string value) {
-	
+Object* Db::String(std::string value) {
+	return new StringObject(value);
 }
 // Alokuje objekt „field“
-static FieldObject* Field(std::string name, FieldType type) {
+FieldObject* Db::Field(std::string name, FieldType type) {
 	return new FieldObject(name, type);
 }

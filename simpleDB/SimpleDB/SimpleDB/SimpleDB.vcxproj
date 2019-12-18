@@ -117,6 +117,7 @@
   <ItemGroup>
     <ClCompile Include="Db.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="SelectIterator.cpp" />
     <ClCompile Include="Table.cpp" />
   </ItemGroup>
   <ItemGroup>
